@@ -38,9 +38,9 @@ If there are no funds that need to be withdrawn, it will output that message and
 It is most useful when scheduled to run via cron / Windows Task Scheduler / etc.  The way it is written, it should not leave any spawned console or browser windows open upon successful completion.
 
 ### Config File ###
-Simply add in your Craigslist username and password to the config file, and you should be good to go!
+Simply add in your PayPal email and password to the config file, and you should be good to go!
 
-**WARNING:** If you clone this repo so you can use it or modify it, BE CAREFUL and DO NOT UPLOAD a commit of your config file with your PayPal username & password in it!!
+**WARNING:** If you clone this repo so you can use it or modify it, BE CAREFUL and DO NOT UPLOAD a commit of your config file with your PayPal email & password in it!!
 
 ## How It Works ##
 This uses Selenium to hook directly into a Chrome window and seeks out elements in the page DOM so it can step through the process of automatically withdrawing the full balance of your PayPal account to the default linked bank account.
