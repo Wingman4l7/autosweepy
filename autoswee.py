@@ -41,7 +41,7 @@ def check_funds(transfer_link):
 
 def get_balance():
     global chromedriver  # use the global chromedriver variable.
-    balance = chromedriver.find_element_by_class_name("enforceLtr").text
+    balance = chromedriver.find_element_by_class_name("test_balance-tile-currency").text
     print(bright_yellow + "Balance: %s" % balance)
     return balance
 
@@ -109,7 +109,7 @@ def login(email, password):
         chromedriver.find_element_by_link_text("Proceed to Account Overview").click()
         countdown(3)
 
-    success = chromedriver.find_elements_by_class_name("engagementWelcomeMessage")
+    success = chromedriver.find_elements_by_class_name("welcome-container")
 
     if len(success):  # element found
         print(bright_green + "Login Successful!  Continuing...")
