@@ -47,7 +47,7 @@ This uses Selenium to hook directly into a Chrome window and seeks out elements 
 
 I haven't tested it with a PayPal account that has more than one bank account attached *(which I think is atypical)*; it may still work.  It also may not work properly if funds in your PayPal account are currently "on hold" -- I have not been able to test this either.
 
-It's possible you could run this headless *(without a browser window spawning)* -- take a look at the options for a commented-out example -- but I haven't really tested this.  A quick hack that will get much the same result is to modify the spawned window dimensions to be negative values; this will place it offscreen.  Warning -- if you set the window width too small, the `logout()` function will break *(the page dynamically hides the needed link element)*.
+It's possible you could run this headless *(without a browser window spawning)* -- take a look at the options for a commented-out example -- but I haven't really tested this.  A quick hack that will get much the same result is to modify the spawned window dimensions to be negative values; this will place it offscreen.
 
 ## License ##
 I haven't bothered to formally declare which license this is going to be under, but it's obviously open-source, and it will probably be some flavor of [Creative Commons](http://creativecommons.org/licenses/), or maybe [GPL](http://www.gnu.org/licenses/licenses.html).

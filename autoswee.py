@@ -26,19 +26,6 @@ bright_red = Fore.RED + Style.BRIGHT
 bright_white = Fore.WHITE + Style.BRIGHT
 
 
-def check_funds(transfer_link):
-    # use the global chromedriver variable.
-    global chromedriver
-    href = transfer_link.get_attribute('href')
-    # print "href: %s" % href  # for debugging
-    if href == "https://www.paypal.com/myaccount/wallet/zeroBalance":
-        print(bright_red + "There is currently a zero account balance.")
-        return False
-    if href == "https://www.paypal.com/myaccount/wallet/withdraw":
-        print (bright_yellow + "There is currently an account balance.")
-        return True
-
-
 def get_balance():
     global chromedriver  # use the global chromedriver variable.
     balance = chromedriver.find_element_by_class_name("test_balance-tile-currency").text
@@ -71,12 +58,6 @@ def result():
     transfer_amt = chromedriver.find_element_by_class_name("fiActionResult-header").text
     print(bright_green + "\n %s \n to default bank account." % transfer_amt)
     chromedriver.find_element_by_class_name("test_withdraw-funds-success-done").click()  # click "Done" button
-    countdown(5)
-    chromedriver.find_element_by_class_name("vx_globalNav-link_logout").click()  # click "Logout" in upper right corner
-    # too small a width and logout() will break -- link element won't be visible
-    # 800px is wide enough to prevent logout element from being dynamically hidden.
-    # maybe should just navigate directly to this link:  https://www.paypal.com/myaccount/logout
-    print(bright_green + "Successfully logged out of PayPal.")
     countdown(5)
 
 
@@ -121,7 +102,21 @@ def login(email, password):
         exit(1)
 
 
-# main method
+def logout():
+    global chromedriver  # use the global chromedriver variable.
+    chromedriver.get('https://www.paypal.com/signout')
+    countdown(5)
+
+    success = chromedriver.find_elements_by_link_text("Log In")
+
+    if len(success):  # element found
+        print(bright_green + "Logout Successful!  Continuing...")
+        countdown(3)
+    else:  # element not found
+        print(bright_red + "ERROR: Logout Unsuccessful!")
+        countdown(3)
+
+
 def main():
     # use the global chromedriver variable.
     global chromedriver
@@ -138,11 +133,13 @@ def main():
 
     login(email, password)  # uses config_file
 
-    transfer_link = chromedriver.find_element_by_link_text("Transfer to your bank")
-
-    if check_funds(transfer_link):
-        balance = get_balance()
-        transfer_link.click()
+    # if check_funds(transfer_link):
+    balance = get_balance()
+    if balance == "$0.00":
+        print (bright_yellow + "PayPal balance is zero.  Nothing to do.  Exiting!")
+        logout()
+    else:
+        chromedriver.get('https://www.paypal.com/myaccount/money/balances/withdraw')
         countdown(5)
         select_payout_method()
         countdown(5)
@@ -150,11 +147,10 @@ def main():
         countdown(5)
         chromedriver.find_element_by_class_name("test_withdraw-submit").click()
         # chromedriver.find_element_by_name("submit").click() should also work
-        countdown(5)  # for debugging, remove
+        countdown(5)
         result()
-
-    else:  # zero account balance
-        print (bright_yellow + "Nothing to do.  Exiting!")
+        countdown(5)
+        logout()
 
     print(bright_cyan + "\n Exiting script!")
     chromedriver.close()  # remove if you want to visually compare console results against actual results
