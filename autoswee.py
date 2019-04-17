@@ -34,7 +34,7 @@ def get_balance():
 
 
 def select_payout_method():
-    chromedriver.find_element_by_class_name("test_bankRadioOption").click()
+    chromedriver.find_element_by_class_name("test_standardRadioOption").click()
     # name withdraw-fiSelectRadio looks like it would also work
     chromedriver.find_element_by_class_name("test_analyze-withdraw-submit").click()
     # chromedriver.find_element_by_name("selectFiNext").click() should also work
