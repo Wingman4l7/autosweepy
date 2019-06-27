@@ -85,6 +85,12 @@ def login(email, password):
     countdown(3)
 
     # probably a cleaner way to do the conditional, like with a try / catch
+    one_touch = chromedriver.find_elements_by_class_name("scTrack\\:unifiedlogin-activate-one-touch")
+    if len(one_touch):
+        chromedriver.find_element_by_link_text("Not now").click()
+        countdown(3)  
+    
+    # probably a cleaner way to do the conditional, like with a try / catch
     ad_page = chromedriver.find_elements_by_link_text("Proceed to Account Overview")
     if len(ad_page):
         chromedriver.find_element_by_link_text("Proceed to Account Overview").click()
