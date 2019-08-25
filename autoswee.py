@@ -65,7 +65,7 @@ def countdown(seconds):
     # print '\n'
     for count in range(seconds, 0, -1):
         if(seconds > 3):
-            print bright_yellow + '    **** Sleeping for %d seconds...\r' % count,
+            print(bright_yellow + '    **** Sleeping for %d seconds...\r' % count),
             sys.stdout.flush()
         time.sleep(1)
 
