@@ -127,7 +127,7 @@ def main():
     # use the global chromedriver variable.
     global chromedriver
 
-    chromedriver = webdriver.Chrome('/Python27/selenium/webdriver/chromedriver', chrome_options=opts)
+    chromedriver = webdriver.Chrome(executable_path='/Python27/selenium/webdriver/chromedriver', chrome_options=opts)
     chromedriver.get('https://www.paypal.com/signin?country.x=US&locale.x=en_US')
 
     ### parse config file with login credentials ###
