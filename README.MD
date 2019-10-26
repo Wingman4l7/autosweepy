@@ -18,8 +18,9 @@ As of my initial commit, I've been running this regularly for a couple months wi
 Autosweepy currently only supports a single PayPal user -- it is not intended for "commercial" use -- but it would be trivial to extend this script to support multiple user accounts via a config file modification and an additional function in the script that would iterate across the multiple logins provided.
 
 ## Installation ##
-This was written for [Python 2.7.x](https://www.python.org/downloads/).
+This was written for [Python 2.7.x](https://www.python.org/downloads/).  It will likely work in Python 3.x.
 
+### Dependencies ###
 The two dependencies are `selenium` *(for browser automation)* and `colorama` *(for nice pretty colored console text that is also Windows-compatible)*.
 
 You can use `pip` to install these dependencies from the project folder:
@@ -27,6 +28,11 @@ You can use `pip` to install these dependencies from the project folder:
  - `pip install -r requirements.txt`
 
 Tested & working on several versions of Chrome, up to 69.x.
+
+### Chromedriver ###
+You will also need to install the [chromedriver binary](https://chromedriver.chromium.org/).  A couple things to pay attention to:
+* You may get an error if the version of Chrome doesn't match up with the version of chromedriver.  Reference the [Version Selection](https://chromedriver.chromium.org/downloads/version-selection) page if you suspect you're getting errors related to this when running the script.
+* If you're getting the error `'chromedriver' executable needs to be in PATH`, you will need to fix where the script looks for the chromedriver binary.  This path is hard-coded in the declaration of the `chromedriver` variable in `main()`.
 
 ## How to Run ##
 For now, this is as simple as:
