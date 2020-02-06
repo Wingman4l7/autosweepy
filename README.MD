@@ -21,7 +21,7 @@ Autosweepy currently only supports a single PayPal user -- it is not intended fo
 This was written for [Python 2.7.x](https://www.python.org/downloads/).  It will likely work in Python 3.x.
 
 ### Dependencies ###
-The two dependencies are `selenium` *(for browser automation)* and `colorama` *(for nice pretty colored console text that is also Windows-compatible)*.
+The dependencies are `configparser` *(for reading your account login info from your config file)*, `selenium` *(for browser automation)*, and `colorama` *(for nice pretty colored console text that is also Windows-compatible)*.
 
 You can use `pip` to install these dependencies from the project folder:
 
