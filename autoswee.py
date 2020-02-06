@@ -2,7 +2,7 @@
 
 import sys
 import time
-import ConfigParser
+import configparser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from colorama import init, Fore, Style
@@ -131,7 +131,7 @@ def main():
     chromedriver.get('https://www.paypal.com/signin?country.x=US&locale.x=en_US')
 
     ### parse config file with login credentials ###
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.read('autosweepy_config.ini')
     email = config.get('paypal.com', 'Email')
     password = config.get('paypal.com', 'Password')
